@@ -1,0 +1,18 @@
+/* NOTE: loosely using https://github.com/jescalan/gps here.
+			   Probably makes sense to localize that README for future reference */
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	font-size: 16px;
+	padding: 0;
+	margin: 0;
+	font-family: var(--font-family-sans);
+}
+
+body {
+	background: var(--color-background-primary);
+}

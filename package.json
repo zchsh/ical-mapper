@@ -1,0 +1,25 @@
+{
+	"name": "ical-mapper",
+	"version": "1.0.0",
+	"description": "An ugly first draft prototype of a map-based [iCalendar](https://en.wikipedia.org/wiki/ICalendar) viewer.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"clean": "rm -rf ./out",
+		"build:src": "node ./scripts/build.mjs",
+		"build:public": "cp -Rf ./public/ ./out/",
+		"build": "npm run build:public && npm run build:src",
+		"watch:src": "chokidar \"./src/**/*\" -c \"npm run build\"",
+		"watch:scripts": "chokidar \"./scripts/**/*\" -c \"npm run build\"",
+		"watch:public": "chokidar \"./public/**/*\" -c \"npm run build:public\"",
+		"serve": "npx serve out",
+		"dev": "concurrently \"npm run watch:public\" \"npm run watch:src\" \"npm run watch:scripts\" \"npm run serve\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"chokidar-cli": "^3.0.0",
+		"concurrently": "^9.2.1"
+	}
+}

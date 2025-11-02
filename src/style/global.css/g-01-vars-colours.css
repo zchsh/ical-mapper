@@ -1,0 +1,85 @@
+:root {
+	--colour-background: #ffffff;
+	--colour-text-black: #000000;
+	--colour-text-gray: #6b6b6b;
+	--colour-text-link: #0769ff;
+
+	@media (prefers-color-scheme: dark) {
+		--colour-background: #222222;
+		--colour-text-black: #ffffff;
+		--colour-text-gray: #bcbec0;
+		--colour-text-link: #3e8bff;
+	}
+}
+
+/* CSS VARS - COLOUR SCHEME */
+
+:root {
+	/*
+			* COLOR PALETTE: stolen from TailWind:
+			* https://tailwindcss.com/docs/colors
+										NOTE: Could look into a really minimal "manual toggle"
+			 situation: https://tailwindcss.com/docs/dark-mode#with-system-theme-support */
+	/* blue */
+	--color-blue-200: oklch(0.882 0.059 254.128);
+	--color-blue-300: oklch(0.809 0.105 251.813);
+	--color-blue-400: oklch(0.707 0.165 254.624);
+	--color-blue-500: oklch(0.623 0.214 259.815);
+	--color-blue-600: oklch(0.546 0.245 262.881);
+	--color-blue-700: oklch(0.488 0.243 264.376);
+	--color-blue-800: oklch(0.424 0.199 265.638);
+	/* neutral */
+	--color-neutral-0: oklch(1 0 0); /* note: custom addition */
+	--color-neutral-50: oklch(0.985 0 0);
+	--color-neutral-100: oklch(0.97 0 0);
+	--color-neutral-150: oklch(0.946 0 0);
+	--color-neutral-200: oklch(0.922 0 0);
+	--color-neutral-300: oklch(0.87 0 0);
+	--color-neutral-400: oklch(0.708 0 0);
+	--color-neutral-500: oklch(0.556 0 0);
+	--color-neutral-600: oklch(0.439 0 0);
+	--color-neutral-700: oklch(0.371 0 0);
+	--color-neutral-800: oklch(0.269 0 0);
+	--color-neutral-850: oklch(0.237 0 0);
+	--color-neutral-900: oklch(0.205 0 0);
+	--color-neutral-950: oklch(0.145 0 0);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		/* blue */
+		--color-blue-200: oklch(0.424 0.199 265.638);
+		--color-blue-300: oklch(0.488 0.243 264.376);
+		--color-blue-400: oklch(0.546 0.245 262.881);
+		--color-blue-500: oklch(0.623 0.214 259.815);
+		--color-blue-600: oklch(0.707 0.165 254.624);
+		--color-blue-700: oklch(0.809 0.105 251.813);
+		--color-blue-800: oklch(0.882 0.059 254.128);
+		/* neutral */
+		--color-neutral-0: oklch(0 0 0); /* note: custom addition */
+		--color-neutral-50: oklch(0.985 0 0);
+		--color-neutral-100: oklch(0.205 0 0);
+		--color-neutral-150: oklch(0.237 0 0);
+		--color-neutral-200: oklch(0.269 0 0);
+		--color-neutral-300: oklch(0.371 0 0);
+		--color-neutral-400: oklch(0.439 0 0);
+		--color-neutral-500: oklch(0.556 0 0);
+		--color-neutral-600: oklch(0.708 0 0);
+		--color-neutral-700: oklch(0.87 0 0);
+		--color-neutral-800: oklch(0.922 0 0);
+		--color-neutral-850: oklch(0.946 0 0);
+		--color-neutral-900: oklch(0.97 0 0);
+		--color-neutral-950: oklch(0.985 0 0);
+	}
+}
+
+/* SEMANTIC COLOUR VARIABLES - builds on the above */
+:root {
+	--color-background-primary: var(--color-neutral-0);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-background-primary: var(--color-neutral-150);
+	}
+}
