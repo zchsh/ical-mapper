@@ -14,5 +14,10 @@ body {
 }
 
 body {
-	background: var(--color-background-primary);
+	background: var(--colour-background);
+	color: var(--colour-text-black);
+}
+
+strong {
+	font-weight: bold;
 }

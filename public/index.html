@@ -7,10 +7,153 @@
 		<link rel="stylesheet" href="/style/global.css" />
 		<!-- PAGE-SPECIFIC -->
 		<title>iCal Mapper</title>
+		<link rel="stylesheet" href="/index.css" />
+		<!-- LEAFLET -->
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+			integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+			crossorigin=""
+		/>
+		<script
+			src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+			crossorigin=""
+		></script>
+		<!-- PAGE SCRIPTS -->
+		<script>
+			function panMap(targetMap, targetLatLon) {
+				targetMap.setView(targetLatLon);
+			}
+
+			const exampleEvents = [
+				{
+					start: "2025-11-01T23:00:00Z",
+					dateString: "2025-11-01 at 18:00",
+					title: "GLOW Ride",
+					host: "London Cycle Link",
+					description:
+						"Join us for a slow, social ride through the heart of the city. Free registration, family-friendly.",
+					url: "https://docs.google.com/forms/d/e/1FAIpQLSet-2Zlmcg8ZNXZknZ-6wCN7MgMUKqNdvT92rnNK6PcTDdwJw/viewform",
+					urlLabel: "Register",
+					geo: [42.9903, -81.2504],
+				},
+				{
+					start: "2025-11-03T14:00:00Z",
+					end: "2025-12-01T17:30:00Z",
+					dateString: "2025-11-03 through 2025-12-01",
+					title: "The Glass Room: A Critical Tech Intervention",
+					host: "London Public Library",
+					description:
+						"A public exhibition that provides an interactive way for people to investigate the social impacts of technologies like Artificial Intelligence and social media platforms, and explore practical solutions to mitigate these impacts.",
+					url: "https://www.lpl.ca/events/glass-room-critical-tech-intervention-35",
+					geo: [42.9846, -81.2463],
+				},
+				{
+					start: "2025-08-30T14:00:00Z",
+					end: "2025-02-15T14:00:00Z",
+					dateString: "2025-08-30 through 2026-02-15",
+					title: "Billy Bert Young: Cloudburst",
+					host: "Museum London",
+					description:
+						"Cloudburst marks a vibrant evolution for London artist Billy Bert Young, blending vivid colour, pop culture, and layered storytelling into dreamlike and theatrical works that propel and feed our imagination.",
+					url: "https://museumlondon.ca/exhibition/billy-bert-young-cloudburst/",
+					geo: [42.9826, -81.2551],
+				},
+			];
+
+			window.onload = function () {
+				const mapContainerId = "map-container";
+				const contentContainerId = "content-container";
+				const contentContainerElem =
+					document.getElementById(contentContainerId);
+
+				var map = L.map(mapContainerId);
+				L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+					maxZoom: 19,
+					attribution:
+						'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+				}).addTo(map);
+
+				const allMarkers = [];
+
+				let eventListRoot = document.createElement("ul");
+
+				for (const exampleEvent of exampleEvents) {
+					const urlLabel = exampleEvent.urlLabel || exampleEvent.url;
+					// Add a marker to the map
+					let marker = L.marker(exampleEvent.geo);
+					// Bind popup to the marker, with basic event details
+					marker.bindPopup(
+						`<strong>${exampleEvent.title}</strong><br>${exampleEvent.host}<br>${exampleEvent.dateString}<br><a target="_blank" href="${exampleEvent.url}">${urlLabel}</a>`
+					);
+					marker.on("click", (e) => panMap(map, e.target.getLatLng()));
+					allMarkers.push(marker);
+					// Event map trigger
+					let eventMapTrigger = document.createElement("button");
+					eventMapTrigger.appendChild(document.createTextNode("Show on map"));
+					eventMapTrigger.onclick = function () {
+						marker.openPopup();
+						panMap(map, marker.getLatLng());
+					};
+					// Event link
+					const eventLink = document.createElement("a");
+					eventLink.href = exampleEvent.url;
+					eventLink.setAttribute("target", "_blank");
+					eventLink.appendChild(document.createTextNode(urlLabel));
+
+					// Event list item
+					let eventListItem = document.createElement("li");
+					let eventTitle = document.createElement("strong");
+					eventTitle.appendChild(document.createTextNode(exampleEvent.title));
+					eventListItem.appendChild(eventTitle);
+					eventListItem.appendChild(document.createElement("br"));
+					eventListItem.appendChild(document.createTextNode(exampleEvent.host));
+					eventListItem.appendChild(document.createElement("br"));
+
+					eventListItem.appendChild(
+						document.createTextNode(exampleEvent.dateString)
+					);
+					if (exampleEvent.description) {
+						eventListItem.appendChild(document.createElement("br"));
+						eventListItem.appendChild(
+							document.createTextNode(exampleEvent.description)
+						);
+					}
+
+					eventListItem.appendChild(document.createElement("br"));
+					eventListItem.appendChild(eventLink);
+					eventListItem.appendChild(document.createElement("br"));
+					eventListItem.appendChild(eventMapTrigger);
+					// Append to event list root
+					eventListRoot.appendChild(eventListItem);
+				}
+
+				// Append event list root to content area
+				contentContainerElem.appendChild(eventListRoot);
+
+				for (const marker of allMarkers) {
+					marker.addTo(map);
+				}
+
+				const allMarkerBounds = allMarkers.map((marker) => {
+					return marker.getLatLng();
+				});
+				const startingBounds = L.latLngBounds(allMarkerBounds);
+				map.fitBounds(startingBounds);
+			};
+		</script>
 	</head>
-	<body>
-		<p style="color: var(--colour-text-black); border: 1px solid magenta">
-			Stub for iCal Mapper.
-		</p>
+	<body id="p-index">
+		<div id="p-flex-container">
+			<div id="content-container">
+				<h1>iCal Mapper</h1>
+				<br />
+				<a href="/add-event-link-tests">Add Event Link Tests</a>
+				<br />
+				<p>Placeholder events for testing:</p>
+			</div>
+			<div id="map-container"></div>
+		</div>
 	</body>
 </html>
