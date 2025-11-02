@@ -25,6 +25,7 @@ These are ideas that feel pretty important to make an iCalendar map-based viewer
 - Marker "clusters" are a really common and recognizable pattern that helps to mitigate this problem
 - Looks like there's a plugin for Leaflet, see [Leaflet.markercluster | Marker Clustering plugin for Leaflet](https://leaflet.github.io/Leaflet.markercluster/). Demo here: <https://leaflet.github.io/Leaflet.markercluster/example/marker-clustering-realworld.388.html>
 - Alternative to "clustering" which may actually be more what I'm looking for: [jawj/OverlappingMarkerSpiderfier-Leaflet: Deals with overlapping markers in the Leaflet maps API, Google Earth-style](https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet/). However, demo is broken, so who knows.
+- Yet another option is to approach the problem a little differently... some locations could have _many_ events, so many that a "cluster" or "spidering" approach of the location marker wouldn't make sense anyways. With this in mind... maybe there's some "duplicate location tolerance" setting, and within a certain distance (say 10 metres or something), calendar events are considered to be in the same location, and a _single_ map marker gets added. Of course, would need UI to clearly show this map marker represents multiple events. This may be a more robust solution than clustering or spidering... it may not be as nice when zoomed out, but that might be an okay compromise.
 
 ## Future ideas
 
