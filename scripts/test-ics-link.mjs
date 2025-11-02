@@ -22,6 +22,9 @@ ics.createEvent(event, (error, value) => {
 	// Base-64 encode the ICS string
 	const base64string = btoa(value);
 	console.log(base64string);
-	const webcalHref = "data:text/calendar;base64," + base64string;
-	console.log(webcalHref);
+	const base64href = "data:text/calendar;base64," + base64string;
+	console.log(base64href);
+
+	const utf8href = "data:text/calendar;charset=utf8," + encodeURI(value);
+	console.log(utf8href);
 });

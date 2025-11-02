@@ -28,10 +28,12 @@
 
 			const exampleEvents = [
 				{
-					start: "2025-11-01T23:00:00Z",
+					start: "2025-11-01T22:00:00Z",
+					end: "2025-11-01T23:30:00Z",
 					dateString: "2025-11-01 at 18:00",
 					title: "GLOW Ride",
 					host: "London Cycle Link",
+					locationLabel: "Victoria Park",
 					description:
 						"Join us for a slow, social ride through the heart of the city. Free registration, family-friendly.",
 					url: "https://docs.google.com/forms/d/e/1FAIpQLSet-2Zlmcg8ZNXZknZ-6wCN7MgMUKqNdvT92rnNK6PcTDdwJw/viewform",
@@ -44,6 +46,7 @@
 					dateString: "2025-11-03 through 2025-12-01",
 					title: "The Glass Room: A Critical Tech Intervention",
 					host: "London Public Library",
+					locationLabel: "London Public Library, Central Branch",
 					description:
 						"A public exhibition that provides an interactive way for people to investigate the social impacts of technologies like Artificial Intelligence and social media platforms, and explore practical solutions to mitigate these impacts.",
 					url: "https://www.lpl.ca/events/glass-room-critical-tech-intervention-35",
@@ -51,14 +54,40 @@
 				},
 				{
 					start: "2025-08-30T14:00:00Z",
-					end: "2025-02-15T14:00:00Z",
+					end: "2026-02-15T14:00:00Z",
 					dateString: "2025-08-30 through 2026-02-15",
 					title: "Billy Bert Young: Cloudburst",
 					host: "Museum London",
+					locationLabel: "Museum London",
 					description:
 						"Cloudburst marks a vibrant evolution for London artist Billy Bert Young, blending vivid colour, pop culture, and layered storytelling into dreamlike and theatrical works that propel and feed our imagination.",
 					url: "https://museumlondon.ca/exhibition/billy-bert-young-cloudburst/",
 					geo: [42.9826, -81.2551],
+				},
+				{
+					start: "2025-10-25T14:00:00Z",
+					end: "2026-05-31T14:00:00Z",
+					dateString: "2025-10-25 through 2026-05-31",
+					title: "Lido Pimienta Love and Resistance",
+					host: "Museum London",
+					locationLabel: "Museum London",
+					description:
+						"A striking new series of ceramics by London-based artist and internationally acclaimed musician Lido Pimienta. Known for her genre-defying sound and bold self-expression, Pimienta here turns to clay to explore themes of identity, solidarity, and resistance.",
+					url: "https://museumlondon.ca/exhibition/lido-pimienta-love-and-resistance/",
+					geo: [42.9826, -81.2551],
+				},
+
+				{
+					start: "2025-11-06T14:00:00Z",
+					end: "2025-11-06T15:00:00Z",
+					dateString: "2025-11-06 from 17:00 to 21:00",
+					title: "Art Crawl Thursdays",
+					host: "TAP Centre for Creativity",
+					locationLabel: "TAP Centre for Creativity",
+					description:
+						"Join us on Dundas Place for the monthly Community Art Crawl! Creatives of all kinds are on the street showing or selling their work, and performing or creating new pieces. This event will take  place on the first Thursday of every month and features dozens of artisans and performers. Every month is different, come down to meet new artists and see their creative work.",
+					url: "https://www.tapcreativity.org/events/art-crawl-thursdays-art-and-performers-hit-the-street-november",
+					geo: [42.9842, -81.248],
 				},
 			];
 
@@ -80,7 +109,7 @@
 				let eventListRoot = document.createElement("ul");
 
 				for (const exampleEvent of exampleEvents) {
-					const urlLabel = exampleEvent.urlLabel || exampleEvent.url;
+					const urlLabel = exampleEvent.urlLabel || "Event details";
 					// Add a marker to the map
 					let marker = L.marker(exampleEvent.geo);
 					// Bind popup to the marker, with basic event details
@@ -101,6 +130,41 @@
 					eventLink.href = exampleEvent.url;
 					eventLink.setAttribute("target", "_blank");
 					eventLink.appendChild(document.createTextNode(urlLabel));
+
+					// Add-to-cal link
+					const addToCalLink = document.createElement("a");
+					const locationLabel =
+						exampleEvent.locationLabel || exampleEvent.host || "Event location";
+					const dateNow = new Date(Date.now());
+					const dateNowIso = dateNow.toISOString();
+					const dateNowForIcs = dateNowIso
+						.replace(/\.\d\d\dZ/, "Z")
+						.replace(/[-,:]/g, "");
+					const icsString = `BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:${self.crypto.randomUUID()}
+SUMMARY:${exampleEvent.title}
+DTSTAMP:${dateNowForIcs}
+DTSTART:${exampleEvent.start.replace(/[-,:]/g, "")}
+DTEND:${exampleEvent.end.replace(/[-,:]/g, "")}
+DESCRIPTION:${exampleEvent.description}
+URL:${exampleEvent.url}
+GEO:${exampleEvent.geo[0]};${exampleEvent.geo[1]}
+LOCATION:${locationLabel}
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=49;X-TITLE=${locationLabel}:geo:${
+						exampleEvent.geo[0]
+					},${exampleEvent.geo[1]}
+END:VEVENT
+END:VCALENDAR`;
+					addToCalLink.href = `data:text/calendar;charset=utf8,${encodeURI(
+						icsString
+					)}`;
+					addToCalLink.setAttribute("download", "test-event.ics");
+					addToCalLink.appendChild(document.createTextNode("Add to calendar"));
 
 					// Event list item
 					let eventListItem = document.createElement("li");
@@ -125,6 +189,8 @@
 					eventListItem.appendChild(eventLink);
 					eventListItem.appendChild(document.createElement("br"));
 					eventListItem.appendChild(eventMapTrigger);
+					eventListItem.appendChild(document.createElement("br"));
+					eventListItem.appendChild(addToCalLink);
 					// Append to event list root
 					eventListRoot.appendChild(eventListItem);
 				}
@@ -149,9 +215,7 @@
 			<div id="content-container">
 				<h1>iCal Mapper</h1>
 				<br />
-				<a href="/add-event-link-tests">Add Event Link Tests</a>
-				<br />
-				<p>Placeholder events for testing:</p>
+				<p>A few test events:</p>
 			</div>
 			<div id="map-container"></div>
 		</div>
