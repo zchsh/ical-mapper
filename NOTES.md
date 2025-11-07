@@ -8,6 +8,7 @@
 - Start with script that generates some `.ics` files. [zchsh/calendar-from-text-file](https://github.com/zchsh/calendar-from-text-file) probably usefule here. Make one text file per event host.
 - Then get viewer app to read in one of those `.ics` files.
 - Later, get viewer app to start with zero events. Drag and drop `.ics` file, or paste `.ics` file URL, to start viewing events.
+- [kewisch/ical.js: Javascript parser for ics (rfc5545) and vcard (rfc6350) data](https://github.com/kewisch/ical.js/?tab=readme-ov-file) will probably be useful
 
 ### Date filtering
 

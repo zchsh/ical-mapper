@@ -1,0 +1,98 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:adamgibbons/ics
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:Pe12Xp6ztLXXeLeifqG-0
+SUMMARY:Billy Bert Young: Cloudburst
+DTSTAMP:20251107T182942Z
+DTSTART;VALUE=DATE:20250830
+DTEND;VALUE=DATE:20260216
+DESCRIPTION:Hosted by Museum London. Cloudburst marks a vibrant evolution f
+	or London artist Billy Bert Young\, blending vivid colour\, pop culture\, 
+	and layered storytelling into dreamlike and theatrical works that propel a
+	nd feed our imagination.
+URL:https://museumlondon.ca/exhibition/billy-bert-young-cloudburst/
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=49;X-TITLE=Museum London:geo:42.9826,-81.2551
+GEO:42.9826;-81.2551
+LOCATION:Museum London
+END:VEVENT
+BEGIN:VEVENT
+UID:hF4b6WqaNEv61CiqWdsCK
+SUMMARY:Lido Pimienta Love and Resistance
+DTSTAMP:20251107T182942Z
+DTSTART;VALUE=DATE:20251025
+DTEND;VALUE=DATE:20260601
+DESCRIPTION:Hosted by Museum London. A striking new series of ceramics by L
+	ondon-based artist and internationally acclaimed musician Lido Pimienta. K
+	nown for her genre-defying sound and bold self-expression\, Pimienta here 
+	turns to clay to explore themes of identity\, solidarity\, and resistance.
+URL:https://museumlondon.ca/exhibition/lido-pimienta-love-and-resistance/
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=49;X-TITLE=Museum London:geo:42.9826,-81.2551
+GEO:42.9826;-81.2551
+LOCATION:Museum London
+END:VEVENT
+BEGIN:VEVENT
+UID:aP78SiEO8AWZe9iBM9gZK
+SUMMARY:GLOW Ride
+DTSTAMP:20251107T182942Z
+DTSTART:20251101T220000Z
+DTEND:20251102T010000Z
+DESCRIPTION:Hosted by London Cycle Link. Join us for a slow\, social ride t
+	hrough the heart of the city Free registration\, family-friendly.
+URL:https://docs.google.com/forms/d/e/1FAIpQLSet-2Zlmcg8ZNXZknZ-6wCN7MgMUKq
+	NdvT92rnNK6PcTDdwJw/viewform
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=49;X-TITLE=Victoria Park:geo:42.9903,-81.2504
+GEO:42.9903;-81.2504
+LOCATION:Victoria Park
+END:VEVENT
+BEGIN:VEVENT
+UID:m8MToIqzRYaow8bHXGF11
+SUMMARY:The Glass Room: A Critical Tech Intervention
+DTSTAMP:20251107T182942Z
+DTSTART;VALUE=DATE:20251103
+DTEND;VALUE=DATE:20251202
+DESCRIPTION:Hosted by London Public Library. A public exhibition that provi
+	des an interactive way for people to investigate the social impacts of tec
+	hnologies like Artificial Intelligence and social media platforms\, and ex
+	plore practical solutions to mitigate these impacts.
+URL:https://www.lpl.ca/events/glass-room-critical-tech-intervention-83
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=49;X-TITLE=London Public Library\, Central Branch:geo:42.9846,81.2463
+GEO:42.9846;81.2463
+LOCATION:London Public Library\, Central Branch
+END:VEVENT
+BEGIN:VEVENT
+UID:GOaSI47skPHMNrMnvQgif
+SUMMARY:Art Crawl Thursdays
+DTSTAMP:20251107T182942Z
+DTSTART:20251106T220000Z
+DTEND:20251107T020000Z
+DESCRIPTION:Hosted by TAP Centre for Creativity. Join us on Dundas Place fo
+	r the monthly Community Art Crawl! Creatives of all kinds are on the stree
+	t showing or selling their work\, and performing or creating new pieces. T
+	his event will take  place on the first Thursday of every month and featur
+	es dozens of artisans and performers. Every month is different\, come down
+	 to meet new artists and see their creative work.
+URL:https://www.tapcreativity.org/events/art-crawl-thursdays-art-and-perfor
+	mers-hit-the-street-november
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=49;X-TITLE=TAP Centre for Creativity:geo:42.9842,-81.248
+GEO:42.9842;-81.248
+LOCATION:TAP Centre for Creativity
+END:VEVENT
+BEGIN:VEVENT
+UID:MyvsWU4BRp9GWyGjNFjWb
+SUMMARY:New Years Brunch
+DTSTAMP:20251107T182942Z
+DTSTART:20260101T150000Z
+DTEND:20260101T170000Z
+DESCRIPTION:Location is 3070 Dundas St West\, Toronto\, Ontario\, M6P 1Z7. 
+	Location label is Dirty Food Eatery. URL is <https://www.dirtyfoodto.com/>
+	.
+URL:https://www.dirtyfoodto.com/
+X-APPLE-STRUCTURED-LOCATION;VALUE=URI;X-APPLE-RADIUS=49;X-TITLE=Dirty Food Eatery:geo:43.6656146,-79.4719481
+GEO:43.6656146;-79.4719481
+LOCATION:Dirty Food Eatery
+END:VEVENT
+END:VCALENDAR

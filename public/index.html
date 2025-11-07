@@ -26,6 +26,15 @@
 				targetMap.setView(targetLatLon);
 			}
 
+			/**
+			 * TODO: parse these events from the generated `.ics` files.
+			 * Will feel silly for now because I'm doing a big trip between
+			 * different formats, writing the data in `.md`, generating `.ics`,
+			 * and then reading back in the `.ics` and parsing that...
+			 * but the point is that there should be a clear separation so that
+			 * later, the "ical-mapper" app would be a pretty generic "reader"
+			 * that would just worry about taking in `.ics` data.
+			 */
 			const exampleEvents = [
 				{
 					start: "2025-11-01T22:00:00Z",
